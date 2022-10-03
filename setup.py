@@ -20,11 +20,11 @@ setuptools.setup(
     url="https://github.com/rango-tools/pornhub-crawler-cli",
     packages=setuptools.find_packages(),
     install_requires=read_requirements(),
-    classifiers=(
+    classifiers=[
         "Programming Language :: Python :: 3",
         "Operating System :: OS Independent",
         "License :: OSI Approved :: MIT License"
-    ),
+    ],
     entry_points ={
             'console_scripts': [
                 'pornhub = pornhub_cli.pornhub_cli:main'
