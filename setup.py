@@ -11,7 +11,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="pornhub_cli",
-    version="1.0.1",
+    version="1.0.2",
     author="Amirhossein Douzandeh",
     author_email="amirzenoozi72@gmail.com",
     description="A Simple CLI To Get Videos From Pornhub And Split By Their Action Frames and Collect Dataset",
