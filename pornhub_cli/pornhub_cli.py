@@ -48,14 +48,14 @@ PassWord = os.getenv('PHUB_PASSWORD')
 class PornHubCrawler:
     def __init__(self, **kwargs):
         # DataBase Connection Config
-        self.currentPath = os.path.abspath(os.getcwd())
-        self.downloadPath = os.path.join( self.currentPath, self.enableDownload)
         self.dataBaseConnection = sqlite3.connect(f'{self.currentPath}/pornhub.db')
         self.spliterSecond = kwargs.get( 'spliterSecond', '')
         self.enableDownload = kwargs.get( 'enableDownload', False)
         self.showBrowser = kwargs.get('showBrowser', True)
         self.socks5 = kwargs.get( 'socks5', '' )
         self.youtubeDlOptions = {}
+        self.currentPath = os.path.abspath(os.getcwd())
+        self.downloadPath = os.path.join( self.currentPath, self.enableDownload)
         
         try:
             self.dataBaseConnection.execute('''CREATE TABLE pornhub
