@@ -223,7 +223,7 @@ class PornHubCrawler:
         self.driver.close()
         self.driver.quit()
 
-def init():
+def main():
     arguments = docopt(__doc__, version='v1.0')
     enableDownload = arguments['--download'] if arguments['--folder-name '] else 'downloads'
     pageNumber = arguments['--page'] if arguments['--page-count'] else 1
@@ -248,5 +248,5 @@ def init():
     
     pornHub.close_driver()
 
-if __name__ == '__main__':
-    init()
+# if __name__ == '__main__':
+#     main()
