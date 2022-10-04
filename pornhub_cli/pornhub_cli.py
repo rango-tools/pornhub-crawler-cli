@@ -33,7 +33,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from docopt import docopt
 from dotenv import load_dotenv
 
-import script.utils as ut
+import utils as ut
 import urllib.request as req
 
 import os
