@@ -14,6 +14,6 @@ git clone https://github.com/rango-tools/pornhub-crawler-cli
 ### Usage
 To Using This Repository You Just Need To Run This Command:
 
-```bash
+```text
 python pornhub.py video [--download=<folder-name>] [--browser] [--login] [--socks5=<proxy-addr>] [--spliter=<second>] <videoID>
 ```
