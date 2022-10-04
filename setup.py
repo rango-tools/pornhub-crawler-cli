@@ -2,7 +2,7 @@ import setuptools
 
 def read_requirements(path='./requirements.txt'):
     with open(path, encoding='utf-8', errors='ignore') as file:
-        install_requires = file.readlines()
+        install_requires = file.read()
 
     return install_requires
 
