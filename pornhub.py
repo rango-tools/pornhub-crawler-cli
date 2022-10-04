@@ -26,10 +26,9 @@ Options:
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
-from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support import expected_conditions as EC
+from webdriver_manager.chrome import ChromeDriverManager
 from docopt import docopt
 from dotenv import load_dotenv
 
@@ -48,6 +47,7 @@ PassWord = os.getenv('PHUB_PASSWORD')
 class PornHubCrawler:
     def __init__(self, **kwargs):
         # DataBase Connection Config
+        self.userAgent = 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.50 Safari/537.36'
         self.spliterSecond = kwargs.get( 'spliterSecond', '')
         self.enableDownload = kwargs.get( 'enableDownload', False)
         self.showBrowser = kwargs.get('showBrowser', True)
@@ -72,6 +72,7 @@ class PornHubCrawler:
 
         # Selenium Driver Options
         self.driverOption = webdriver.ChromeOptions()
+        self.driverOption.add_argument(f'user-agent={self.userAgent}')
         self.driverOption.add_argument('log-level=3')
 
         if (self.enableDownload and not os.path.exists(self.downloadPath)):
@@ -84,8 +85,7 @@ class PornHubCrawler:
             self.driverOption.add_argument( f'--proxy-server=socks5://{socks5}')
             self.youtubeDlOptions['proxy'] = f'socks5://{socks5}'
 
-        self.driver = webdriver.Chrome( options = self.driverOption )
-        self.driver.maximize_window()
+        self.driver = webdriver.Chrome(executable_path=ChromeDriverManager().install(), options=self.driverOption)
 
     def login( self ):
         loginUrl = 'https://www.pornhub.com/login'
