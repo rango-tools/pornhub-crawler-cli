@@ -33,7 +33,6 @@ from selenium.webdriver.support import expected_conditions as EC
 from docopt import docopt
 from dotenv import load_dotenv
 
-import utils as ut
 import urllib.request as req
 
 import os
@@ -113,6 +112,10 @@ class PornHubCrawler:
         self.driver.implicitly_wait(10)
         time.sleep(10)
 
+    def convert_minute_to_seconds(self, timeString):
+        splittedTime = timeString.split(':')
+        return int( splittedTime[0] ) * 60 + int( splittedTime[1] )
+
     def download_single_video( self, pageUrl ):
         self.youtubeDlOptions['outtmpl'] = f'{self.downloadPath}/%(id)s/%(id)s.%(ext)s'
         with youtube_dl.YoutubeDL( self.youtubeDlOptions ) as ydl:
@@ -165,7 +168,7 @@ class PornHubCrawler:
             # Get Actions List
             for index, action in enumerate(self.driver.find_elements(By.CSS_SELECTOR, 'div.seconds ul.actionTagList a li')):
                 actionName = self.driver.execute_script('return arguments[0].firstChild.textContent;', action).strip().lower().replace(' ', '_')
-                actionTime = ut.convert_minute_to_seconds( self.driver.execute_script('return arguments[0].childNodes[1].textContent;', action).strip())
+                actionTime = self.convert_minute_to_seconds( self.driver.execute_script('return arguments[0].childNodes[1].textContent;', action).strip())
                 actionObject = { "name": f'{actionName}_{index}', "time": actionTime }
                 videoActions.append( actionObject )
 
