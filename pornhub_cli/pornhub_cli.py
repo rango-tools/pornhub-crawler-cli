@@ -226,7 +226,7 @@ class PornHubCrawler:
 def main():
     arguments = docopt(__doc__, version='v1.0')
     enableDownload = arguments['--download'] if arguments['--download'] else 'downloads'
-    pageNumber = arguments['--page'] if arguments['--page-count'] else 1
+    pageNumber = arguments['--page'] if arguments['--page'] else 1
     socks5Proxy = arguments['--socks5']
     showBrowser = arguments['--browser']
     spliterSecond = arguments['--spliter']
