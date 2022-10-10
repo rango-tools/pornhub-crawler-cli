@@ -127,7 +127,7 @@ class PornHubCrawler:
             self.driver.get( modelPageUrl )
 
             # Get Single Model Page Video ID's
-            videosWrapperElem = [v.get_attribute('_vkey') for v in self.driver.find_elements_by_css_selector('ul#mostRecentVideosSection li.pcVideoListItem.videoBox')]
+            videosWrapperElem = [v.get_attribute('_vkey') for v in self.driver.find_elements(By.CSS_SELECTOR, 'ul#mostRecentVideosSection li.pcVideoListItem.videoBox')]
             for videoID in videosWrapperElem:
                 print(f'=========== Start Checking Video: {videoID} ===========\n')
                 self.process_single_video( videoID )
@@ -147,7 +147,7 @@ class PornHubCrawler:
             self.driver.get( archiveUrl )
 
             # Get Single Archive Page Video ID's
-            videosWrapperElem = [v.get_attribute('_vkey') for v in self.driver.find_elements_by_css_selector('ul#videoCategory li.pcVideoListItem.videoBox')]
+            videosWrapperElem = [v.get_attribute('_vkey') for v in self.driver.find_elements(By.CSS_SELECTOR, 'ul#videoCategory li.pcVideoListItem.videoBox')]
             for videoID in videosWrapperElem:
                 print(f'=========== Start Checking Video: {videoID} ===========\n')
                 self.process_single_video( videoID )
@@ -248,5 +248,5 @@ def main():
     
     pornHub.close_driver()
 
-# if __name__ == '__main__':
-#     main()
+if __name__ == '__main__':
+    main()
